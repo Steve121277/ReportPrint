@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.printPreviewControlReport = new System.Windows.Forms.PrintPreviewControl();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.listViewUsers = new ReportPrint.OwnControls.UserListView();
+            this.listViewUserDatas = new ReportPrint.OwnControls.UserDataListView();
             this.panelGame = new System.Windows.Forms.Panel();
             this.btnTUGAdd = new System.Windows.Forms.Button();
             this.btnModifyUserData = new System.Windows.Forms.Button();
@@ -44,8 +46,6 @@
             this.btnSavePDF = new System.Windows.Forms.Button();
             this.buttonMakeReport = new System.Windows.Forms.Button();
             this.panelBody = new System.Windows.Forms.Panel();
-            this.listViewUsers = new ReportPrint.OwnControls.UserListView();
-            this.listViewUserDatas = new ReportPrint.OwnControls.UserDataListView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -86,6 +86,36 @@
             this.splitContainer1.Size = new System.Drawing.Size(270, 501);
             this.splitContainer1.SplitterDistance = 234;
             this.splitContainer1.TabIndex = 4;
+            // 
+            // listViewUsers
+            // 
+            this.listViewUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewUsers.Font = new System.Drawing.Font("ＭＳ ゴシック", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.listViewUsers.FullRowSelect = true;
+            this.listViewUsers.HideSelection = false;
+            this.listViewUsers.Location = new System.Drawing.Point(0, 0);
+            this.listViewUsers.Name = "listViewUsers";
+            this.listViewUsers.Size = new System.Drawing.Size(270, 234);
+            this.listViewUsers.TabIndex = 2;
+            this.listViewUsers.UseCompatibleStateImageBehavior = false;
+            this.listViewUsers.View = System.Windows.Forms.View.Details;
+            this.listViewUsers.VirtualMode = true;
+            this.listViewUsers.SelectedIndexChanged += new System.EventHandler(this.listViewUsers_SelectedIndexChanged);
+            // 
+            // listViewUserDatas
+            // 
+            this.listViewUserDatas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewUserDatas.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F);
+            this.listViewUserDatas.FullRowSelect = true;
+            this.listViewUserDatas.HideSelection = false;
+            this.listViewUserDatas.Location = new System.Drawing.Point(0, 0);
+            this.listViewUserDatas.Name = "listViewUserDatas";
+            this.listViewUserDatas.Size = new System.Drawing.Size(270, 263);
+            this.listViewUserDatas.TabIndex = 1;
+            this.listViewUserDatas.UseCompatibleStateImageBehavior = false;
+            this.listViewUserDatas.View = System.Windows.Forms.View.Details;
+            this.listViewUserDatas.VirtualMode = true;
+            this.listViewUserDatas.SelectedIndexChanged += new System.EventHandler(this.listViewUserDatas_SelectedIndexChanged);
             // 
             // panelGame
             // 
@@ -220,7 +250,7 @@
             // 
             this.buttonMakeReport.Enabled = false;
             this.buttonMakeReport.Font = new System.Drawing.Font("ＭＳ ゴシック", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.buttonMakeReport.Location = new System.Drawing.Point(215, 42);
+            this.buttonMakeReport.Location = new System.Drawing.Point(191, 42);
             this.buttonMakeReport.Name = "buttonMakeReport";
             this.buttonMakeReport.Size = new System.Drawing.Size(172, 32);
             this.buttonMakeReport.TabIndex = 3;
@@ -239,36 +269,6 @@
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(1800, 504);
             this.panelBody.TabIndex = 7;
-            // 
-            // listViewUsers
-            // 
-            this.listViewUsers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewUsers.Font = new System.Drawing.Font("ＭＳ ゴシック", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.listViewUsers.FullRowSelect = true;
-            this.listViewUsers.HideSelection = false;
-            this.listViewUsers.Location = new System.Drawing.Point(0, 0);
-            this.listViewUsers.Name = "listViewUsers";
-            this.listViewUsers.Size = new System.Drawing.Size(270, 234);
-            this.listViewUsers.TabIndex = 2;
-            this.listViewUsers.UseCompatibleStateImageBehavior = false;
-            this.listViewUsers.View = System.Windows.Forms.View.Details;
-            this.listViewUsers.VirtualMode = true;
-            this.listViewUsers.SelectedIndexChanged += new System.EventHandler(this.listViewUsers_SelectedIndexChanged);
-            // 
-            // listViewUserDatas
-            // 
-            this.listViewUserDatas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewUserDatas.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F);
-            this.listViewUserDatas.FullRowSelect = true;
-            this.listViewUserDatas.HideSelection = false;
-            this.listViewUserDatas.Location = new System.Drawing.Point(0, 0);
-            this.listViewUserDatas.Name = "listViewUserDatas";
-            this.listViewUserDatas.Size = new System.Drawing.Size(270, 263);
-            this.listViewUserDatas.TabIndex = 1;
-            this.listViewUserDatas.UseCompatibleStateImageBehavior = false;
-            this.listViewUserDatas.View = System.Windows.Forms.View.Details;
-            this.listViewUserDatas.VirtualMode = true;
-            this.listViewUserDatas.SelectedIndexChanged += new System.EventHandler(this.listViewUserDatas_SelectedIndexChanged);
             // 
             // MainForm
             // 
