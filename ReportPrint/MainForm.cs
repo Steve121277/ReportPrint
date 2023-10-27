@@ -171,7 +171,7 @@ namespace ReportPrint
         {
             ReportDocument reportDoc = new ReportDocument();
 
-            StatisticItem s_item = StatisticItem.Calc(listViewUsers.SelectedUser, DateTime.Now);
+            StatisticItem s_item = StatisticItem.Calc(listViewUsers.SelectedUser, DateTime.Now, tbNotes.Text);
 
             reportDoc.ReportMaker = new Report.PrintReportIItem(s_item);
 
@@ -183,7 +183,7 @@ namespace ReportPrint
         {
             ReportDocument reportDoc = new ReportDocument();
 
-            StatisticItem s_item = StatisticItem.Calc(listViewUsers.SelectedUser, DateTime.Now);
+            StatisticItem s_item = StatisticItem.Calc(listViewUsers.SelectedUser, DateTime.Now, tbNotes.Text);
 
             reportDoc.ReportMaker = new Report.PrintReportIItem(s_item);
 
@@ -207,7 +207,7 @@ namespace ReportPrint
 
             ReportDocument document = new ReportDocument();
 
-            StatisticItem s_item = StatisticItem.Calc(listViewUsers.SelectedUser, DateTime.Now);
+            StatisticItem s_item = StatisticItem.Calc(listViewUsers.SelectedUser, DateTime.Now, tbNotes.Text);
 
             document.ReportMaker = new Report.PrintReportIItem(s_item);
 
@@ -256,7 +256,9 @@ namespace ReportPrint
             };
 
             if (folderBrowserDialog.ShowDialog() != DialogResult.OK)
+            {
                 return;
+            }
 
             Config.DataPath = folderBrowserDialog.SelectedPath;
 

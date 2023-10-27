@@ -10,27 +10,17 @@ namespace ReportPrint.Model.Statistics
         internal float[,] Values { get; set; } = new float[5, 12];
         internal int[] CaptionNo = new int[12];
         internal int FirstMonth { get; set; }
+        internal string Notes;
 
-        //Calculate statistics
-        internal static StatisticItem Calc(User User, DateTime CalcDate)
+        //Calculate statistics for print
+        internal static StatisticItem Calc(User user, DateTime calcDate, string notes)
         {
-            StatisticItem sitem = new StatisticItem() { UserInfo = User };
-            IEnumerable<IUserData> UserDatas = Model.ModelManager.GetUserDatas(User.ID);
+            StatisticItem sitem = new StatisticItem() { UserInfo = user, Notes = notes };
+            IEnumerable<IUserData> UserDatas = Model.ModelManager.GetUserDatas(user.ID);
 
-            int year = CalcDate.Year;
-            int month = CalcDate.Month;
+            int year = calcDate.Year;
+            int month = calcDate.Month;
             int cnt = 0;
-
-            //set 12 months
-            if (month == 12)
-            {
-                sitem.FirstMonth = month == 12 ? 1 : (month + 1);
-            }
-            else
-            {
-                year--;
-                month++;
-            }
 
             DateTime BegTime = new DateTime(year, month, 1);
 
@@ -53,15 +43,15 @@ namespace ReportPrint.Model.Statistics
 
                     switch (userData.GameType)
                     {
-                        case GameType.All_ssfive:
+                        case GameType.All_ashiage:
                             {
                                 UserDataAll userDataAll = (UserDataAll)userData;
 
-                                index = (int)(userDataAll.IsLeft ? GameType.All_ssfive_left : GameType.All_ssfive_right);
+                                index = (int)(userDataAll.IsLeft ? GameType.All_ashiage_left : GameType.All_ashiage_right);
                             }
                             break;
-                        case GameType.All_ashiage:
-                            index = (int)GameType.All_ashiage;
+                        case GameType.All_ssfive:
+                            index = (int)GameType.All_ssfive;
                             break;
                         case GameType.CarePitLog:
                             index = (int)GameType.CarePitLog;
@@ -72,11 +62,13 @@ namespace ReportPrint.Model.Statistics
                     }
 
                     if (index >= 0)
+                    {
                         sitem.Values[index, cnt] = userData.GaneScore;
+                    }
                 }
 
                 cnt++;
-                BegTime = EndTime;
+                BegTime = BegTime.AddMonths(-1);
             }
 
             return sitem;

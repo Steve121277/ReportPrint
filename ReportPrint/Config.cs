@@ -29,7 +29,7 @@ namespace ReportPrint
         internal const string TitleOfTUG = "Timed up & go";
         internal const string TitleOfTUG_unit = "秒";
         internal const string TitleOfCarePitLog = "姿勢";
-        internal const string TitleOfCarePitLog_unit = "步";
+        internal const string TitleOfCarePitLog_unit = "点";
 
         internal const string PrintFontName = "Meiryo UI";
 
@@ -217,12 +217,12 @@ namespace ReportPrint
         }
         internal static float log_y_max
         {
-            get { return GetAxisReg(Config.Reg_log_max, 10); }
+            get { return GetAxisReg(Config.Reg_log_max, 100); }
             set { SetConfigValue(Config.Reg_log_max, value); }
         }
         internal static float log_y_intv
         {
-            get { return GetAxisReg(Config.Reg_log_intv, 2); }
+            get { return GetAxisReg(Config.Reg_log_intv, 20); }
             set { SetConfigValue(Config.Reg_log_intv, value); }
         }
         #endregion

@@ -48,12 +48,6 @@ namespace ReportPrint.Report.Charts
             ChartArea = new Rectangle(Left, Top, Width, Height);
         }
 
-        void Draw(Graphics g)
-        {
-            DrawAxisX(g);
-            DrawAxisY(g);
-        }
-
         public void AddChartStyle(Graphics g)
         {
             float fX, fY;
@@ -94,6 +88,7 @@ namespace ReportPrint.Report.Charts
                 Alignment = StringAlignment.Far
             };
 
+            //draw x-axis(month)
             int month = this.FirstMonth;
 
             for (fX = 1; fX < XLimitMax; fX += XTick)
@@ -101,8 +96,8 @@ namespace ReportPrint.Report.Charts
                 PointF xAxisPoint = Point2D(fX, YLimitMin);
                 g.FillRectangle(Brushes.Black, new RectangleF(xAxisPoint.X - 3f, xAxisPoint.Y - 3f, 6f, 6f));
 
-                if (month == 13)
-                    month = 1;
+                if (month == 0)
+                    month = 12;
 
                 SizeF sizeXTick = g.MeasureString(fX.ToString(), XTickFont);
                 g.DrawString(
@@ -112,7 +107,7 @@ namespace ReportPrint.Report.Charts
                     new PointF(xAxisPoint.X + sizeXTick.Width / 2, xAxisPoint.Y + 15f),
                     sf);
 
-                month++;
+                month--;
             }
 
             SizeF tickFontSize = g.MeasureString("A", YTickFont);
@@ -167,15 +162,6 @@ namespace ReportPrint.Report.Charts
             int plotHeight = this.ChartArea.Height - 85 - 120;
 
             this.PlotArea = new Rectangle(plotX, plotY, plotWidth, plotHeight);
-        }
-
-        void DrawAxisX(Graphics g)
-        {
-
-        }
-
-        void DrawAxisY(Graphics g)
-        {
         }
 
         public PointF Point2D(PointF pt)

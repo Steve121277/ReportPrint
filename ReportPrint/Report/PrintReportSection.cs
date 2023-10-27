@@ -34,9 +34,6 @@ namespace ReportPrint.Report
 
             this.s_item = s_item;
 
-            chart3.FirstMonth = s_item.FirstMonth;
-            chart4.FirstMonth = s_item.FirstMonth;
-
             InitChat();
         }
 
@@ -52,14 +49,14 @@ namespace ReportPrint.Report
                 new DataSeries()
                 {
                     SeriesName = Config.TtileOfAll_ashiage_right,
-                    PointList = GetPointsFromIndex((int)GameType.All_ssfive_right)
+                    PointList = GetPointsFromIndex((int)GameType.All_ashiage_right)
                 }
             );
             dc1.Add(
                 new DataSeries()
                 {
                     SeriesName = Config.TtileOfAll_ashiage_left,
-                    PointList = GetPointsFromIndex((int)GameType.All_ssfive_left)
+                    PointList = GetPointsFromIndex((int)GameType.All_ashiage_left)
                 }
             );
             dc1.DataSeriesList[1].Symbol.SymbolType = SymbolTypeEnum.Circle;
@@ -72,7 +69,7 @@ namespace ReportPrint.Report
             dc2.Add(
                 new DataSeries()
                 {
-                    PointList = GetPointsFromIndex((int)GameType.All_ashiage)
+                    PointList = GetPointsFromIndex((int)GameType.All_ssfive)
                 });
 
             chart3.ChartArea = new Rectangle(0, 608, 1120, 560);
@@ -243,6 +240,7 @@ namespace ReportPrint.Report
             g.FillRoundRect(new SolidBrush(Color.FromArgb(197, 193, 183)), 0, 0, xWidth, 826, 25, 25, 23, 6);
 
             g.DrawString("備考：", fontNotes, Brushes.Black, new Point(50, 60));
+            g.DrawString(this.s_item.Notes, fontNotes, Brushes.Black, new Point(200, 60));
         }
 
         void TransformGraphic(Graphics g, int x, int y)

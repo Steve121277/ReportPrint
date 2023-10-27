@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ReportPrint.Model
 {
-    internal class ModelManager
+    internal static class ModelManager
     {
         public static IEnumerable<User> Users
         {

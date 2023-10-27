@@ -237,7 +237,7 @@ namespace ReportPrint.Model
                         continue;
                     }
 
-                    UserDataCarePitLog userData = new UserDataCarePitLog()
+                    UserDataTUG userData = new UserDataTUG()
                     {
                         UserId = userID,
                         GameType = GameType.TUG,
@@ -257,9 +257,9 @@ namespace ReportPrint.Model
         {
             string pathName = string.Empty;
 
-            if (userData.GameType == GameType.All_ssfive_left ||
-                userData.GameType == GameType.All_ssfive_right ||
-                userData.GameType == GameType.All_ashiage)
+            if (userData.GameType == GameType.All_ashiage_left ||
+                userData.GameType == GameType.All_ashiage_right ||
+                userData.GameType == GameType.All_ssfive)
                 pathName = Config.CSVUserDataAllFilePath;
             else if (userData.GameType == GameType.TUG)
                 pathName = Config.CSVUserDataTUGFilePath;
@@ -267,7 +267,9 @@ namespace ReportPrint.Model
                 pathName = Config.CSVUserDataCarePitLogFilePath;
 
             if (!File.Exists(pathName))
+            {
                 return false;
+            }
 
             List<String> lines = new List<String>();
             int lineNo = 0;
@@ -297,9 +299,9 @@ namespace ReportPrint.Model
 
         public static bool ModifyUserData(IUserData userData, float value)
         {
-            if (userData.GameType == GameType.All_ssfive_left ||
-                userData.GameType == GameType.All_ssfive_right ||
-                userData.GameType == GameType.All_ashiage)
+            if (userData.GameType == GameType.All_ashiage_left ||
+                userData.GameType == GameType.All_ashiage_right ||
+                userData.GameType == GameType.All_ssfive)
                 return ModifyUserDataFromAllCSV(userData, value);
             else if (userData.GameType == GameType.TUG)
                 return ModifyUserDataFromTUGCSV(userData, value);
@@ -314,7 +316,9 @@ namespace ReportPrint.Model
             string pathName = Config.CSVUserDataAllFilePath;
 
             if (!File.Exists(pathName))
+            {
                 return false;
+            }
 
             string[] lines = File.ReadAllLines(pathName);
 
@@ -323,7 +327,9 @@ namespace ReportPrint.Model
             var split = line.Split(',');
 
             if (split.Length < 8)
+            {
                 return false;
+            }
 
             split[7] = value.ToString();
             lines[userData.LineNo] = string.Join(",", split);
@@ -338,7 +344,9 @@ namespace ReportPrint.Model
             string pathName = Config.CSVUserDataCarePitLogFilePath;
 
             if (!File.Exists(pathName))
+            {
                 return false;
+            }
 
             string[] lines = File.ReadAllLines(pathName);
 
@@ -347,7 +355,9 @@ namespace ReportPrint.Model
             var split = line.Split('\t');
 
             if (split.Length < 5)
+            {
                 return false;
+            }
 
             split[4] = value.ToString();
             lines[userData.LineNo] = string.Join("\t", split);

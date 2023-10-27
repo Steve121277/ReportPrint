@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.printPreviewControlReport = new System.Windows.Forms.PrintPreviewControl();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.listViewUsers = new ReportPrint.OwnControls.UserListView();
-            this.listViewUserDatas = new ReportPrint.OwnControls.UserDataListView();
             this.panelGame = new System.Windows.Forms.Panel();
             this.btnTUGAdd = new System.Windows.Forms.Button();
             this.btnModifyUserData = new System.Windows.Forms.Button();
@@ -46,6 +44,10 @@
             this.btnSavePDF = new System.Windows.Forms.Button();
             this.buttonMakeReport = new System.Windows.Forms.Button();
             this.panelBody = new System.Windows.Forms.Panel();
+            this.tbNotes = new System.Windows.Forms.TextBox();
+            this.labelNotes = new System.Windows.Forms.Label();
+            this.listViewUsers = new ReportPrint.OwnControls.UserListView();
+            this.listViewUserDatas = new ReportPrint.OwnControls.UserDataListView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -87,36 +89,6 @@
             this.splitContainer1.SplitterDistance = 234;
             this.splitContainer1.TabIndex = 4;
             // 
-            // listViewUsers
-            // 
-            this.listViewUsers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewUsers.Font = new System.Drawing.Font("ＭＳ ゴシック", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.listViewUsers.FullRowSelect = true;
-            this.listViewUsers.HideSelection = false;
-            this.listViewUsers.Location = new System.Drawing.Point(0, 0);
-            this.listViewUsers.Name = "listViewUsers";
-            this.listViewUsers.Size = new System.Drawing.Size(270, 234);
-            this.listViewUsers.TabIndex = 2;
-            this.listViewUsers.UseCompatibleStateImageBehavior = false;
-            this.listViewUsers.View = System.Windows.Forms.View.Details;
-            this.listViewUsers.VirtualMode = true;
-            this.listViewUsers.SelectedIndexChanged += new System.EventHandler(this.listViewUsers_SelectedIndexChanged);
-            // 
-            // listViewUserDatas
-            // 
-            this.listViewUserDatas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewUserDatas.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F);
-            this.listViewUserDatas.FullRowSelect = true;
-            this.listViewUserDatas.HideSelection = false;
-            this.listViewUserDatas.Location = new System.Drawing.Point(0, 0);
-            this.listViewUserDatas.Name = "listViewUserDatas";
-            this.listViewUserDatas.Size = new System.Drawing.Size(270, 263);
-            this.listViewUserDatas.TabIndex = 1;
-            this.listViewUserDatas.UseCompatibleStateImageBehavior = false;
-            this.listViewUserDatas.View = System.Windows.Forms.View.Details;
-            this.listViewUserDatas.VirtualMode = true;
-            this.listViewUserDatas.SelectedIndexChanged += new System.EventHandler(this.listViewUserDatas_SelectedIndexChanged);
-            // 
             // panelGame
             // 
             this.panelGame.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -128,7 +100,7 @@
             this.panelGame.Location = new System.Drawing.Point(8, 518);
             this.panelGame.Name = "panelGame";
             this.panelGame.Size = new System.Drawing.Size(279, 78);
-            this.panelGame.TabIndex = 5;
+            this.panelGame.TabIndex = 0;
             // 
             // btnTUGAdd
             // 
@@ -137,7 +109,7 @@
             this.btnTUGAdd.Location = new System.Drawing.Point(92, 42);
             this.btnTUGAdd.Name = "btnTUGAdd";
             this.btnTUGAdd.Size = new System.Drawing.Size(93, 32);
-            this.btnTUGAdd.TabIndex = 4;
+            this.btnTUGAdd.TabIndex = 2;
             this.btnTUGAdd.Text = "TUG追加";
             this.btnTUGAdd.UseVisualStyleBackColor = true;
             this.btnTUGAdd.Click += new System.EventHandler(this.btnTUGAdd_Click);
@@ -161,7 +133,7 @@
             this.btnDeleteUserData.Location = new System.Drawing.Point(8, 42);
             this.btnDeleteUserData.Name = "btnDeleteUserData";
             this.btnDeleteUserData.Size = new System.Drawing.Size(78, 32);
-            this.btnDeleteUserData.TabIndex = 2;
+            this.btnDeleteUserData.TabIndex = 1;
             this.btnDeleteUserData.Text = "消去";
             this.btnDeleteUserData.UseVisualStyleBackColor = true;
             this.btnDeleteUserData.Click += new System.EventHandler(this.btnDeleteUserData_Click);
@@ -173,7 +145,7 @@
             this.textBoxGameScore.Location = new System.Drawing.Point(134, 9);
             this.textBoxGameScore.Name = "textBoxGameScore";
             this.textBoxGameScore.Size = new System.Drawing.Size(136, 26);
-            this.textBoxGameScore.TabIndex = 1;
+            this.textBoxGameScore.TabIndex = 0;
             this.textBoxGameScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // labelGameName
@@ -190,6 +162,8 @@
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.labelNotes);
+            this.panel2.Controls.Add(this.tbNotes);
             this.panel2.Controls.Add(this.btnSettingGraph);
             this.panel2.Controls.Add(this.btnSettingPath);
             this.panel2.Controls.Add(this.btnPrint);
@@ -198,7 +172,7 @@
             this.panel2.Location = new System.Drawing.Point(294, 518);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1514, 78);
-            this.panel2.TabIndex = 6;
+            this.panel2.TabIndex = 1;
             // 
             // btnSettingGraph
             // 
@@ -206,7 +180,7 @@
             this.btnSettingGraph.Location = new System.Drawing.Point(3, 42);
             this.btnSettingGraph.Name = "btnSettingGraph";
             this.btnSettingGraph.Size = new System.Drawing.Size(182, 32);
-            this.btnSettingGraph.TabIndex = 7;
+            this.btnSettingGraph.TabIndex = 1;
             this.btnSettingGraph.Text = "グラフ設定";
             this.btnSettingGraph.UseVisualStyleBackColor = true;
             this.btnSettingGraph.Click += new System.EventHandler(this.btnSettingGraph_Click);
@@ -217,7 +191,7 @@
             this.btnSettingPath.Location = new System.Drawing.Point(3, 5);
             this.btnSettingPath.Name = "btnSettingPath";
             this.btnSettingPath.Size = new System.Drawing.Size(182, 32);
-            this.btnSettingPath.TabIndex = 6;
+            this.btnSettingPath.TabIndex = 0;
             this.btnSettingPath.Text = "データソース設定";
             this.btnSettingPath.UseVisualStyleBackColor = true;
             this.btnSettingPath.Click += new System.EventHandler(this.btnSettingPath_Click);
@@ -250,7 +224,7 @@
             // 
             this.buttonMakeReport.Enabled = false;
             this.buttonMakeReport.Font = new System.Drawing.Font("ＭＳ ゴシック", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.buttonMakeReport.Location = new System.Drawing.Point(191, 42);
+            this.buttonMakeReport.Location = new System.Drawing.Point(726, 42);
             this.buttonMakeReport.Name = "buttonMakeReport";
             this.buttonMakeReport.Size = new System.Drawing.Size(172, 32);
             this.buttonMakeReport.TabIndex = 3;
@@ -269,6 +243,55 @@
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(1800, 504);
             this.panelBody.TabIndex = 7;
+            // 
+            // tbNotes
+            // 
+            this.tbNotes.Font = new System.Drawing.Font("ＭＳ ゴシック", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbNotes.Location = new System.Drawing.Point(270, 45);
+            this.tbNotes.Name = "tbNotes";
+            this.tbNotes.Size = new System.Drawing.Size(430, 26);
+            this.tbNotes.TabIndex = 2;
+            // 
+            // labelNotes
+            // 
+            this.labelNotes.AutoSize = true;
+            this.labelNotes.Enabled = false;
+            this.labelNotes.Font = new System.Drawing.Font("ＭＳ ゴシック", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelNotes.Location = new System.Drawing.Point(214, 48);
+            this.labelNotes.Name = "labelNotes";
+            this.labelNotes.Size = new System.Drawing.Size(49, 19);
+            this.labelNotes.TabIndex = 9;
+            this.labelNotes.Text = "備考";
+            // 
+            // listViewUsers
+            // 
+            this.listViewUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewUsers.Font = new System.Drawing.Font("ＭＳ ゴシック", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.listViewUsers.FullRowSelect = true;
+            this.listViewUsers.HideSelection = false;
+            this.listViewUsers.Location = new System.Drawing.Point(0, 0);
+            this.listViewUsers.Name = "listViewUsers";
+            this.listViewUsers.Size = new System.Drawing.Size(270, 234);
+            this.listViewUsers.TabIndex = 2;
+            this.listViewUsers.UseCompatibleStateImageBehavior = false;
+            this.listViewUsers.View = System.Windows.Forms.View.Details;
+            this.listViewUsers.VirtualMode = true;
+            this.listViewUsers.SelectedIndexChanged += new System.EventHandler(this.listViewUsers_SelectedIndexChanged);
+            // 
+            // listViewUserDatas
+            // 
+            this.listViewUserDatas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewUserDatas.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F);
+            this.listViewUserDatas.FullRowSelect = true;
+            this.listViewUserDatas.HideSelection = false;
+            this.listViewUserDatas.Location = new System.Drawing.Point(0, 0);
+            this.listViewUserDatas.Name = "listViewUserDatas";
+            this.listViewUserDatas.Size = new System.Drawing.Size(270, 263);
+            this.listViewUserDatas.TabIndex = 1;
+            this.listViewUserDatas.UseCompatibleStateImageBehavior = false;
+            this.listViewUserDatas.View = System.Windows.Forms.View.Details;
+            this.listViewUserDatas.VirtualMode = true;
+            this.listViewUserDatas.SelectedIndexChanged += new System.EventHandler(this.listViewUserDatas_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -292,6 +315,7 @@
             this.panelGame.ResumeLayout(false);
             this.panelGame.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panelBody.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -315,6 +339,8 @@
         private System.Windows.Forms.Button btnTUGAdd;
         private System.Windows.Forms.Button btnSettingPath;
         private System.Windows.Forms.Button btnSettingGraph;
+        private System.Windows.Forms.Label labelNotes;
+        private System.Windows.Forms.TextBox tbNotes;
     }
 }
 

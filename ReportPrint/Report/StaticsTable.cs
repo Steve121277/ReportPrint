@@ -115,12 +115,12 @@ namespace ReportPrint.Report
 
             while (cnt < 12)
             {
-                if (month == 13)
-                    month = 1;
+                if (month == 0)
+                    month = 12;
 
                 DrawText(graphics, month.ToString() + "月", 0, 4 + cnt, stringFormatCell);
 
-                month++;
+                month--;
                 cnt++;
             }
 
