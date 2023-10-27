@@ -3,11 +3,19 @@ using System.Drawing;
 
 namespace ReportPrint.Report.Charts
 {
+    /// <summary>
+    /// Class <c>DataCollection</c> manipulate a collection of series of chart.
+    /// </summary>
     internal class DataCollection
     {
         public List<DataSeries> DataSeriesList { get; set; } = new List<DataSeries>();
         public int DataSeriesIndex { get; set; }
 
+        /// <summary>
+        /// Add data series to chart.
+        /// </summary>
+        /// <param name="ds">DataSeries</param>
+        /// <returns></returns>
         public int Add(DataSeries ds)
         {
             this.DataSeriesList.Add(ds);
@@ -30,11 +38,16 @@ namespace ReportPrint.Report.Charts
             this.DataSeriesList.Clear();
         }
 
+        /// <summary>
+        /// Draw data series to LineChart.
+        /// </summary>
+        /// <param name="g">Graphics</param>
+        /// <param name="cs">LineChart</param>
         public void AddLines(Graphics g, LineChart cs)
         {
+            //draw data.
             foreach (DataSeries ds in this.DataSeriesList)
             {
-
                 if (ds.LineStyle.IsVisible)
                 {
                     Pen aPen = new Pen(ds.LineStyle.LineColor, ds.LineStyle.LineThickness);

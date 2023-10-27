@@ -4,12 +4,19 @@ using System.Linq;
 
 namespace ReportPrint.Model.Statistics
 {
+    /// <summary>
+    /// Class <c>StatisticItem</c> models the statistic item from data.
+    /// </summary>
     internal class StatisticItem
     {
+        //Measured user information.
         internal User UserInfo { get; set; }
+        //Previous 12 month's value.
         internal float[,] Values { get; set; } = new float[5, 12];
-        internal int[] CaptionNo = new int[12];
-        internal int FirstMonth { get; set; }
+        //Month to be calculated.
+        //uUsed for table caption and graph month axiss  drawing.
+        internal int CalcMonth { get; set; }
+        //Statistic Notes
         internal string Notes;
 
         //Calculate statistics for print
@@ -24,19 +31,21 @@ namespace ReportPrint.Model.Statistics
 
             DateTime BegTime = new DateTime(year, month, 1);
 
-            sitem.FirstMonth = month;
+            sitem.CalcMonth = month;
 
             while (cnt < 12)
             {
                 DateTime EndTime = BegTime.AddMonths(1);
-
+                //Initialze value to Single.NaN.
                 for (int i = 0; i <= (int)GameType.CarePitLog; i++)
                 {
                     sitem.Values[i, cnt] = Single.NaN;
                 }
 
+                //Find user datas in one months.
                 IEnumerable<IUserData> findUserDatas = UserDatas.Where(u => u.MeasureTime >= BegTime && u.MeasureTime < EndTime).OrderBy(d => d.MeasureTime);
 
+                //Search data and set to Values
                 foreach (IUserData userData in findUserDatas)
                 {
                     int index = -1;
@@ -63,7 +72,7 @@ namespace ReportPrint.Model.Statistics
 
                     if (index >= 0)
                     {
-                        sitem.Values[index, cnt] = userData.GaneScore;
+                        sitem.Values[index, cnt] = userData.GameScore;
                     }
                 }
 

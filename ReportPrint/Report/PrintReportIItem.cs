@@ -4,6 +4,9 @@ using System.Drawing;
 
 namespace ReportPrint.Report
 {
+    /// <summary>
+    /// Class <c>PrintReportIItem</c> models Report Item for Program.
+    /// </summary>
     internal class PrintReportIItem : IReportMaker
     {
         StatisticItem s_item;
@@ -13,6 +16,10 @@ namespace ReportPrint.Report
             this.s_item = s_item;
         }
 
+        /// <summary>
+        /// Called when make page.
+        /// </summary>
+        /// <param name="reportDocument"></param>
         public void MakeDocument(ReportDocument reportDocument)
         {
             reportDocument.DocumentUnit = GraphicsUnit.Document;

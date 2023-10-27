@@ -5,6 +5,9 @@ using System.Drawing.Drawing2D;
 
 namespace ReportPrint.Report
 {
+    /// <summary>
+    /// Class <c>StaticsTable</c> implements StaticsTable used in ReportSection.
+    /// </summary>
     internal class StaticsTable
     {
         int CellWidth = 118;
@@ -40,19 +43,22 @@ namespace ReportPrint.Report
             this.Cols = Cols;
         }
 
-        internal void Draw(Graphics graphics)
+        /// <summary>
+        /// Draw Table used in report section.
+        /// </summary>
+        /// <param name="graphics"></param>
+        public void Draw(Graphics graphics)
         {
-            DrawBorder(graphics);
-        }
-
-        private void DrawBorder(Graphics graphics)
-        {
-            DrawSimpleTable(graphics);
-            DrawMerge(graphics);
+            DrawFrameOfTable(graphics);
+            DrawMergedCell(graphics);
             DrawTitle(graphics);
         }
 
-        private void DrawSimpleTable(Graphics graphics)
+        /// <summary>
+        /// Draw Frame of table.
+        /// </summary>
+        /// <param name="graphics"></param>
+        private void DrawFrameOfTable(Graphics graphics)
         {
             int x = 0, y = 0;
 
@@ -87,7 +93,11 @@ namespace ReportPrint.Report
             }
         }
 
-        private void DrawMerge(Graphics graphics)
+        /// <summary>
+        /// Draw merged cells of this table.
+        /// </summary>
+        /// <param name="graphics"></param>
+        private void DrawMergedCell(Graphics graphics)
         {
             Brush brushMerge = new SolidBrush(Color.Gray);
 
@@ -98,6 +108,10 @@ namespace ReportPrint.Report
             MergeCell(graphics, brushOdd, 5, 0, 1, 3);
         }
 
+        /// <summary>
+        /// Draw title of Table.
+        /// </summary>
+        /// <param name="graphics">Graphics</param>
         private void DrawTitle(Graphics graphics)
         {
             StringFormat stringFormatCell = new StringFormat()
@@ -109,7 +123,7 @@ namespace ReportPrint.Report
             DrawText(graphics, "測定月", 0, 0, stringFormatCell, 1, 4);
 
             //Draw Month
-            int month = this.s_item.FirstMonth;
+            int month = this.s_item.CalcMonth;
 
             int cnt = 0;
 
@@ -151,6 +165,15 @@ namespace ReportPrint.Report
                 sf);
         }
 
+        /// <summary>
+        /// Draw merged cell.
+        /// </summary>
+        /// <param name="graphics">Graphics</param>
+        /// <param name="brushMerge">Brush</param>
+        /// <param name="Row">Start Row</param>
+        /// <param name="Col">Start Col</param>
+        /// <param name="RowsSpan">Merged Row Count</param>
+        /// <param name="ColsSpan">Merged Col Count</param>
         private void MergeCell(Graphics graphics, Brush brushMerge, int Row, int Col, int RowsSpan, int ColsSpan)
         {
             graphics.FillRectangle(brushMerge,
@@ -160,6 +183,14 @@ namespace ReportPrint.Report
                 RowHeight(RowsSpan));
         }
 
+        /// <summary>
+        /// Find font size which fits with specifed size.
+        /// </summary>
+        /// <param name="g">Graphics</param>
+        /// <param name="text">Text String</param>
+        /// <param name="font">First font</param>
+        /// <param name="proposedSize">Size to be drawn</param>
+        /// <returns></returns>
         private Font FindBestFitFont(Graphics g, String text, Font font, Size proposedSize)
         {
             Font fitFont = font;
@@ -184,14 +215,20 @@ namespace ReportPrint.Report
             }
         }
 
+        /// <summary>
+        /// Draw statistic value to Table.
+        /// </summary>
+        /// <param name="graphics">Graphics</param>
         private void DrawTextOfCells(Graphics graphics)
         {
+            //algin is right.
             StringFormat stringFormatCell = new StringFormat()
             {
                 Alignment = StringAlignment.Far,
                 LineAlignment = StringAlignment.Center
             };
 
+            //draw statistic value from "片足立ち" to "姿勢".
             for (int kind = 0; kind < 5; kind++)
             {
                 for (int month = 0; month < 12; month++)

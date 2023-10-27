@@ -4,6 +4,9 @@ using System.Windows.Forms;
 
 namespace ReportPrint
 {
+/// <summary>
+/// This is the main entry point for the application.
+/// </summary>
     internal static class Program
     {
         /// <summary>
@@ -15,7 +18,7 @@ namespace ReportPrint
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //EPPPlusライセンス設定
+            //Setting EPPPlus license.
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
             Application.Run(new MainForm());

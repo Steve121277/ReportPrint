@@ -6,9 +6,16 @@ using System.Windows.Forms;
 
 namespace ReportPrint.OwnControls
 {
+    /// <summary>
+    /// Class <c>UserListView</c> models User Info Listview Control.
+    /// ListView control uses VirtualList mode.
+    /// </summary>
     public partial class UserListView : ListView
     {
         private IEnumerable<Model.User> users = null;
+        /// <summary>
+        /// List Of User Information.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal IEnumerable<Model.User> Users
         {
@@ -32,6 +39,9 @@ namespace ReportPrint.OwnControls
             }
         }
 
+        /// <summary>
+        /// Selected User in ListView
+        /// </summary>
         internal Model.User SelectedUser
         {
             get

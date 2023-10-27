@@ -3,6 +3,9 @@ using System.Windows.Forms;
 
 namespace ReportPrint.Report
 {
+    /// <summary>
+    /// Class <c>GraphAxisSettingForm</c> set min, max and interval value of verital axis.
+    /// </summary>
     internal partial class GraphAxisSettingForm : Form
     {
         public GraphAxisSettingForm()
@@ -15,6 +18,7 @@ namespace ReportPrint.Report
             InitData();
         }
 
+        //initialize value in config value stored in registry.
         void InitData()
         {
             numericUpDown1.Value = (decimal)Config.ashiag_y_min;

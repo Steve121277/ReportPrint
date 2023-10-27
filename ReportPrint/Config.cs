@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace ReportPrint
 {
+    /// <summary>
+    /// Class <c>Config</c> models the configuration.
+    /// </summary>
     internal class Config
     {
         const string ApplicationRegPath = "Software\\ReportApp";

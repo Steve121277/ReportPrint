@@ -14,12 +14,15 @@ using System.Windows.Forms;
 
 namespace ReportPrint
 {
+    /// <summary>
+    /// Class <c>MainForm</c> is  a Main fomr of this program.
+    /// </summary>
     public partial class MainForm : Form
     {
         public MainForm()
         {
             InitializeComponent();
-            this.Icon = global::ReportPrint.Properties.Resources.app;
+            Icon = global::ReportPrint.Properties.Resources.app;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -27,9 +30,11 @@ namespace ReportPrint
             LoadData();
         }
 
-        int LoadData()
+        //Load data from data files.
+        //Data file is specifed by Config.DataPath
+        private int LoadData()
         {
-            //check whether path is Exist
+            // Check whether path exists
             string dataPath = Config.DataPath;
 
             if (!Directory.Exists(dataPath))
@@ -45,10 +50,10 @@ namespace ReportPrint
             return users.Count();
         }
 
-        int AddUsersToListView(IEnumerable<User> Users)
+        //Add Users to list view.
+        private int AddUsersToListView(IEnumerable<User> users)
         {
-            listViewUsers.Users = Users;
-
+            listViewUsers.Users = users;
             return listViewUsers.Items.Count;
         }
 
@@ -82,7 +87,7 @@ namespace ReportPrint
                 panelGame.Enabled = true;
 
                 labelGameName.Text = userData.GameTitle;
-                textBoxGameScore.Text = userData.GaneScore.ToString();
+                textBoxGameScore.Text = userData.GameScore.ToString();
             }
             else
             {
@@ -95,7 +100,8 @@ namespace ReportPrint
             btnModifyUserData.Enabled = isEnable;
         }
 
-        void LoadUserDatas()
+        //Retrives User Datas from selected User.
+        private void LoadUserDatas()
         {
             User user = listViewUsers.SelectedUser;
 
@@ -128,7 +134,7 @@ namespace ReportPrint
             if (formAdd.ShowDialog() != DialogResult.OK)
                 return;
 
-            if (UserDataFileManager.SaveTUGData(listViewUsers.SelectedUser.ID, formAdd.MeasureTime, formAdd.GameScore))
+            if (UserDataFileManager.AppendTUGData(listViewUsers.SelectedUser.ID, formAdd.MeasureTime, formAdd.GameScore))
             {
                 LoadUserDatas();
                 MessageBox.Show("TUGデータが追加されました。", "通知");
@@ -143,7 +149,7 @@ namespace ReportPrint
         {
             textBoxGameScore.Text = textBoxGameScore.Text.Trim();
 
-            if (String.IsNullOrEmpty(textBoxGameScore.Text))
+            if (string.IsNullOrEmpty(textBoxGameScore.Text))
             {
                 MessageBox.Show("数値を入力する必要があります。", "警告");
                 return;
@@ -192,7 +198,7 @@ namespace ReportPrint
 
         private void btnSavePDF_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialogPDF = new System.Windows.Forms.SaveFileDialog
+            SaveFileDialog saveFileDialogPDF = new SaveFileDialog
             {
                 FileName = "report",
                 Filter = "PDFファイル|*.pdf"
@@ -201,9 +207,7 @@ namespace ReportPrint
             if (saveFileDialogPDF.ShowDialog() != DialogResult.OK)
                 return;
 
-            Cursor oldCursor = this.Cursor;
-
-            this.Cursor = Cursors.WaitCursor;
+            UseWaitCursor = true;
 
             ReportDocument document = new ReportDocument();
 
@@ -243,7 +247,7 @@ namespace ReportPrint
                 pdf.Save(saveFileDialogPDF.FileName);
             }
 
-            this.Cursor = oldCursor;
+            UseWaitCursor = false;
 
             MessageBox.Show("pdfファイルで保存しました。", "通知");
         }

@@ -10,6 +10,9 @@ using System.Globalization;
 
 namespace ReportPrint.Report
 {
+    /// <summary>
+    /// Class <c>PrintReportSection</c> implements section for making Report.
+    /// </summary>
     internal class PrintReportSection : ReportSection
     {
         StatisticItem s_item;
@@ -17,15 +20,19 @@ namespace ReportPrint.Report
         const int xLeftMargin = 105;
         const int xWidth = 2252;
 
-        LineChart chart1 = new LineChart() { Caption = Config.TtileOfAll_ashiage, YLabel = $"({Config.TtileOfAll_ashiage_unit})" };
-        Legend legend1 = new Legend();
-        DataCollection dc1 = new DataCollection();
-        LineChart chart2 = new LineChart() { Caption = Config.TtileOfAll_ssfive, YLabel = $"({Config.TtileOfAll_ssfive_unit})" };
-        DataCollection dc2 = new DataCollection();
-        LineChart chart3 = new LineChart() { Caption = Config.TitleOfTUG, YLabel = $"({Config.TitleOfTUG_unit})" };
-        DataCollection dc3 = new DataCollection();
-        LineChart chart4 = new LineChart() { Caption = Config.TitleOfCarePitLog, YLabel = $"({Config.TitleOfCarePitLog_unit})" };
-        DataCollection dc4 = new DataCollection();
+        //chart for 片足立ち
+        LineChart chart_ashiage = new LineChart() { Caption = Config.TtileOfAll_ashiage, YLabel = $"({Config.TtileOfAll_ashiage_unit})" };
+        Legend legend_ashiage = new Legend();
+        DataCollection dc_ashiage = new DataCollection();
+        //chart for 立ち座り
+        LineChart chart_ssfive = new LineChart() { Caption = Config.TtileOfAll_ssfive, YLabel = $"({Config.TtileOfAll_ssfive_unit})" };
+        DataCollection dc_ssfive = new DataCollection();
+        //chart for TUG
+        LineChart chart_tug = new LineChart() { Caption = Config.TitleOfTUG, YLabel = $"({Config.TitleOfTUG_unit})" };
+        DataCollection dc_tug = new DataCollection();
+        //chart for 姿勢
+        LineChart chart_log = new LineChart() { Caption = Config.TitleOfCarePitLog, YLabel = $"({Config.TitleOfCarePitLog_unit})" };
+        DataCollection dc_log = new DataCollection();
 
         public PrintReportSection(StatisticItem s_item)
         {
@@ -39,62 +46,67 @@ namespace ReportPrint.Report
 
         void InitChat()
         {
-            chart1.ChartArea = new Rectangle(0, 0, 1120, 560);
-            chart1.FirstMonth = s_item.FirstMonth;
-            legend1.IsLegendVisible = true;
-            chart1.YLimitMin = Config.ashiag_y_min;
-            chart1.YLimitMax = Config.ashiag_y_max;
-            chart1.YTick = Config.ashiag_y_intv;
-            dc1.Add(
+            chart_ashiage.ChartArea = new Rectangle(0, 0, 1120, 560);
+            chart_ashiage.FirstMonth = s_item.CalcMonth;
+            legend_ashiage.IsLegendVisible = true;
+            chart_ashiage.YLimitMin = Config.ashiag_y_min;
+            chart_ashiage.YLimitMax = Config.ashiag_y_max;
+            chart_ashiage.YTick = Config.ashiag_y_intv;
+            dc_ashiage.Add(
                 new DataSeries()
                 {
                     SeriesName = Config.TtileOfAll_ashiage_right,
                     PointList = GetPointsFromIndex((int)GameType.All_ashiage_right)
                 }
             );
-            dc1.Add(
+            dc_ashiage.Add(
                 new DataSeries()
                 {
                     SeriesName = Config.TtileOfAll_ashiage_left,
                     PointList = GetPointsFromIndex((int)GameType.All_ashiage_left)
                 }
             );
-            dc1.DataSeriesList[1].Symbol.SymbolType = SymbolTypeEnum.Circle;
+            dc_ashiage.DataSeriesList[1].Symbol.SymbolType = SymbolTypeEnum.Circle;
 
-            chart2.ChartArea = new Rectangle(xWidth - 1120, 0, 1120, 560);
-            chart2.FirstMonth = s_item.FirstMonth;
-            chart2.YLimitMin = Config.ssfive_y_min;
-            chart2.YLimitMax = Config.ssfive_y_max;
-            chart2.YTick = Config.ssfive_y_intv;
-            dc2.Add(
+            chart_ssfive.ChartArea = new Rectangle(xWidth - 1120, 0, 1120, 560);
+            chart_ssfive.FirstMonth = s_item.CalcMonth;
+            chart_ssfive.YLimitMin = Config.ssfive_y_min;
+            chart_ssfive.YLimitMax = Config.ssfive_y_max;
+            chart_ssfive.YTick = Config.ssfive_y_intv;
+            dc_ssfive.Add(
                 new DataSeries()
                 {
                     PointList = GetPointsFromIndex((int)GameType.All_ssfive)
                 });
 
-            chart3.ChartArea = new Rectangle(0, 608, 1120, 560);
-            chart3.FirstMonth = s_item.FirstMonth;
-            chart3.YLimitMin = Config.tug_y_min;
-            chart3.YLimitMax = Config.tug_y_max;
-            chart3.YTick = Config.tug_y_intv;
-            dc3.Add(
+            chart_tug.ChartArea = new Rectangle(0, 608, 1120, 560);
+            chart_tug.FirstMonth = s_item.CalcMonth;
+            chart_tug.YLimitMin = Config.tug_y_min;
+            chart_tug.YLimitMax = Config.tug_y_max;
+            chart_tug.YTick = Config.tug_y_intv;
+            dc_tug.Add(
                 new DataSeries()
                 {
                     PointList = GetPointsFromIndex((int)GameType.TUG)
                 });
 
-            chart4.ChartArea = new Rectangle(xWidth - 1120, 608, 1120, 560);
-            chart4.FirstMonth = s_item.FirstMonth;
-            chart4.YLimitMin = Config.log_y_min;
-            chart4.YLimitMax = Config.log_y_max;
-            chart4.YTick = Config.log_y_intv;
-            dc4.Add(
+            chart_log.ChartArea = new Rectangle(xWidth - 1120, 608, 1120, 560);
+            chart_log.FirstMonth = s_item.CalcMonth;
+            chart_log.YLimitMin = Config.log_y_min;
+            chart_log.YLimitMax = Config.log_y_max;
+            chart_log.YTick = Config.log_y_intv;
+            dc_log.Add(
                 new DataSeries()
                 {
                     PointList = GetPointsFromIndex((int)GameType.CarePitLog)
                 });
         }
 
+        /// <summary>
+        /// Get chart points from statistic value.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         private List<PointF> GetPointsFromIndex(int index)
         {
             List<PointF> points = new List<PointF>();
@@ -142,6 +154,10 @@ namespace ReportPrint.Report
             DrawSkelton(g);
         }
 
+        /// <summary>
+        /// Draw skelton of Report Section.
+        /// </summary>
+        /// <param name="g">Graphics</param>
         private void DrawSkelton(Graphics g)
         {
             TransformGraphic(g, xLeftMargin, 74);
@@ -161,6 +177,10 @@ namespace ReportPrint.Report
             DrawNotes(g);
         }
 
+        /// <summary>
+        /// Draw Title of report section.
+        /// </summary>
+        /// <param name="g">Graphics</param>
         private void DrawTitle(Graphics g)
         {
             g.DrawHalfRoundedRectangle(0, 0, 700, 110, 23, new SolidBrush(Color.FromArgb(108, 108, 99)));
@@ -169,6 +189,10 @@ namespace ReportPrint.Report
             g.DrawString("身体機能測定結果", fontTitle, Brushes.White, new Point(70, 20));
         }
 
+        /// <summary>
+        /// Draw user information to Report Section.
+        /// </summary>
+        /// <param name="g">Graphics</param>
         private void DrawInfo(Graphics g)
         {
             Font font1 = new Font(Config.PrintFontName, 11, FontStyle.Bold);
@@ -204,6 +228,10 @@ namespace ReportPrint.Report
             g.DrawLine(pen, 1460, 250, 2190, 250);
         }
 
+        /// <summary>
+        /// Draw Statistic value to table.
+        /// </summary>
+        /// <param name="g">Graphics</param>
         private void DrawStatistics(Graphics g)
         {
             g.FillRoundRect(new SolidBrush(Color.FromArgb(152, 148, 140)), 0, 0, xWidth, 642, 10, 10, 32, 24);
@@ -217,22 +245,30 @@ namespace ReportPrint.Report
             TransformGraphic(g, -136, -64);
         }
 
+        /// <summary>
+        /// Draw chart to Report Section.
+        /// </summary>
+        /// <param name="g">Graphics</param>
         private void DrawCharts(Graphics g)
         {
-            chart1.AddChartStyle(g);
-            dc1.AddLines(g, chart1);
-            legend1.AddLegend(g, dc1, chart1);
+            chart_ashiage.AddChartStyle(g);
+            dc_ashiage.AddLines(g, chart_ashiage);
+            legend_ashiage.AddLegend(g, dc_ashiage, chart_ashiage);
 
-            chart2.AddChartStyle(g);
-            dc2.AddLines(g, chart2);
+            chart_ssfive.AddChartStyle(g);
+            dc_ssfive.AddLines(g, chart_ssfive);
 
-            chart3.AddChartStyle(g);
-            dc3.AddLines(g, chart3);
+            chart_tug.AddChartStyle(g);
+            dc_tug.AddLines(g, chart_tug);
 
-            chart4.AddChartStyle(g);
-            dc4.AddLines(g, chart4);
+            chart_log.AddChartStyle(g);
+            dc_log.AddLines(g, chart_log);
         }
 
+        /// <summary>
+        /// Draw Notes to Report Section.
+        /// </summary>
+        /// <param name="g">Graphics</param>
         private void DrawNotes(Graphics g)
         {
             Font fontNotes = new Font(Config.PrintFontName, 12, FontStyle.Bold);
@@ -243,6 +279,12 @@ namespace ReportPrint.Report
             g.DrawString(this.s_item.Notes, fontNotes, Brushes.Black, new Point(200, 60));
         }
 
+        /// <summary>
+        /// Transforms from logical coordinates to phsical coordinates.
+        /// </summary>
+        /// <param name="g">Graphics</param>
+        /// <param name="x">X coordinate</param>
+        /// <param name="y">Y coordinate</param>
         void TransformGraphic(Graphics g, int x, int y)
         {
             var transform = g.Transform;

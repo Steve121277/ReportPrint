@@ -3,15 +3,30 @@ using System.Drawing;
 
 namespace ReportPrint.Report.Charts
 {
+    /// <summary>
+    /// Class <c>Legend</c> models Legend of chart.
+    /// </summary>
     internal class Legend
     {
+        //Specify whether legend is visible.
         public bool IsLegendVisible { get; set; } = false;
+        //Text color of legend.
         public Color TextColor { get; set; } = Color.Black;
+        //Font  color of legend.
         public Font LegendFont { get; set; } = new Font("", 8, FontStyle.Regular);
+        //width of displaying data series mark.
         float LegendMarkWidth { get; set; } = 60f;
+        //Gap between data sereis mark.
         float GapBetweenItems { get; set; } = 15f;
+        //gap between data sereis mark and mark text.
         float GapsBetweenLineAndText { get; set; } = 4f;
 
+        /// <summary>
+        /// Draw legend to chart.
+        /// </summary>
+        /// <param name="g"Graphics></param>
+        /// <param name="dc">DataCollection</param>
+        /// <param name="chart">LineChart</param>
         public void AddLegend(Graphics g, DataCollection dc, LineChart chart)
         {
             if (dc.DataSeriesList.Count == 0)

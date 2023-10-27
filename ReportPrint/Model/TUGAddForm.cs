@@ -4,11 +4,21 @@ using System.Windows.Forms;
 
 namespace ReportPrint.Model
 {
+    /// <summary>
+    /// Class <c>TUGAddForm</c> is form for add TUG data to file.
+    /// It uses User object.
+    /// </summary>
     internal partial class TUGAddForm : Form
     {
-        Model.User user;
+        private Model.User user;
 
+        /// <summary>
+        /// Measured Game Score
+        /// </summary>
         public float GameScore { get; private set; }
+        /// <summary>
+        /// Measure Time in yyyy-M-d
+        /// </summary>
         public DateTime MeasureTime { get { return dtpMeasureTime.Value; } }
 
         public TUGAddForm(Model.User user)

@@ -4,6 +4,9 @@ using System.Drawing.Drawing2D;
 
 namespace ReportPrint.Report.Charts
 {
+    /// <summary>
+    /// Class <c>LineStyle</c> implements LineChart.
+    /// </summary>
     internal class LineChart
     {
         public int FirstMonth { get; set; } = 1;

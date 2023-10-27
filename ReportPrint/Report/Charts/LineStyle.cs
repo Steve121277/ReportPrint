@@ -3,6 +3,9 @@ using System.Drawing.Drawing2D;
 
 namespace ReportPrint.Report.Charts
 {
+    /// <summary>
+    /// Class <c>LineStyle</c> models line style of data series.
+    /// </summary>
     internal class LineStyle
     {
         public bool IsVisible { get; set; } = true;

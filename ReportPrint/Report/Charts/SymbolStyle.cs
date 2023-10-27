@@ -2,6 +2,9 @@
 
 namespace ReportPrint.Report.Charts
 {
+    /// <summary>
+    /// Class <c>SymbolTypeEnum</c> models symbol type.
+    /// </summary>
     internal enum SymbolTypeEnum : int
     {
         None = 0,
@@ -10,6 +13,9 @@ namespace ReportPrint.Report.Charts
         Triangle = 3,
     }
 
+    /// <summary>
+    /// Class <c>SymbolStyle</c> models symbol style.
+    /// </summary>
     internal class SymbolStyle
     {
         public SymbolTypeEnum SymbolType { get; set; } = SymbolTypeEnum.Triangle;
@@ -19,6 +25,11 @@ namespace ReportPrint.Report.Charts
         public Color FillColor { get; set; } = Color.Black;
         public float BorderThickness { get; set; } = 1.0f;
 
+        /// <summary>
+        /// Draw symbol.
+        /// </summary>
+        /// <param name="g">Graphics</param>
+        /// <param name="pt">Drawing point</param>
         public void DrawSymbol(Graphics g, PointF pt)
         {
             Pen aPen = new Pen(this.BorderColor, BorderThickness);

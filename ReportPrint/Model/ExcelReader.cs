@@ -6,12 +6,18 @@ using System.IO;
 
 namespace ReportPrint.Model
 {
+    /// <summary>
+    /// Class <c>ExcelReader</c> models reading data from Excel file.
+    /// It uses EPPPlus open source  solution.
+    /// </summary>
     internal static class ExcelReader
     {
+        //Read User data from file, Config.ExcelUserFilePath.
         public static IEnumerable<User> GetUsersFromExcel()
         {
             List<User> users = new List<User>();
 
+            //Check whether file exist.
             if (!File.Exists(Config.ExcelUserFilePath))
             {
                 return users;

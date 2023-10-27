@@ -7,8 +7,18 @@ using System.IO;
 
 namespace ReportPrint.Model
 {
+    /// <summary>
+    /// Class <c>UserDataFileManager</c> read, modify and remove user data file item.
+    /// And Add TUG data item.
+    /// </summary>
     internal class UserDataFileManager
     {
+        /// <summary>
+        /// Read user data from ALL.csv.
+        /// delimiter is ','.
+        /// </summary>
+        /// <param name="UserID">User id</param>
+        /// <returns>List of UserDataAll</returns>
         internal static IEnumerable<IUserData> GetUserDataFromAllCSV(int UserID)
         {
             List<IUserData> userDatas = new List<IUserData>();
@@ -89,7 +99,7 @@ namespace ReportPrint.Model
                         GameType = GameName == "ssfive" ? GameType.All_ssfive : GameType.All_ashiage,
                         LineNo = csvLineNo - 1,
                         MeasureTime = measureTime.Value,
-                        GaneScore = score.Value,
+                        GameScore = score.Value,
                         IsLeft = GameOption == Config.TtileOfAll_ashiage_left
                     };
 
@@ -100,6 +110,12 @@ namespace ReportPrint.Model
             return userDatas;
         }
 
+        /// <summary>
+        /// Read user data from CarePitLog2020.txt.
+        /// delimiter is '\t'.
+        /// </summary>
+        /// <param name="UserID">User id</param>
+        /// <returns>List of UserDataCarePitLog</returns>
         internal static IEnumerable<IUserData> GetUserDataFromLogCSV(int UserID)
         {
             List<IUserData> userDatas = new List<IUserData>();
@@ -164,10 +180,9 @@ namespace ReportPrint.Model
                     UserDataCarePitLog userData = new UserDataCarePitLog()
                     {
                         UserId = userID,
-                        GameType = GameType.CarePitLog,
                         LineNo = csvLineNo - 1,
                         MeasureTime = measureTime.Value,
-                        GaneScore = score.Value
+                        GameScore = score.Value
                     };
 
                     userDatas.Add(userData);
@@ -177,6 +192,12 @@ namespace ReportPrint.Model
             return userDatas;
         }
 
+        /// <summary>
+        /// Read user data from TUG.csv.
+        /// delimiter is ','.
+        /// </summary>
+        /// <param name="UserID">User id</param>
+        /// <returns>List of UserDataTUG</returns>
         public static IEnumerable<IUserData> GetUserDataFromTUGCSV(int UserID)
         {
             List<IUserData> userDatas = new List<IUserData>();
@@ -240,10 +261,9 @@ namespace ReportPrint.Model
                     UserDataTUG userData = new UserDataTUG()
                     {
                         UserId = userID,
-                        GameType = GameType.TUG,
                         LineNo = csvLineNo - 1,
                         MeasureTime = measureTime.Value,
-                        GaneScore = score.Value
+                        GameScore = score.Value
                     };
 
                     userDatas.Add(userData);
@@ -253,18 +273,38 @@ namespace ReportPrint.Model
             return userDatas;
         }
 
+        /// <summary>
+        /// Get File name by GameType.
+        /// delimiter is '\t'.
+        /// </summary>
+        /// <param name="gameType">Game Type</param>
+        /// <returns>Data File Name</returns>
+        private static string GetFileNameByGameType(GameType gameType)
+        {
+            switch(gameType)
+            {
+                case GameType.All_ashiage_left:
+                case GameType.All_ashiage_right:
+                case GameType.All_ssfive:
+                    return Config.CSVUserDataAllFilePath;
+                case GameType.TUG:
+                    return Config.CSVUserDataTUGFilePath;
+                case GameType.CarePitLog:
+                    return Config.CSVUserDataCarePitLogFilePath;
+                default:
+                    return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Delete user data from user data file.
+        /// delimiter is '\t'.
+        /// </summary>
+        /// <param name="userData">User data item</param>
+        /// <returns>true if succeed, false when fails</returns>
         public static bool DeleteUserData(IUserData userData)
         {
-            string pathName = string.Empty;
-
-            if (userData.GameType == GameType.All_ashiage_left ||
-                userData.GameType == GameType.All_ashiage_right ||
-                userData.GameType == GameType.All_ssfive)
-                pathName = Config.CSVUserDataAllFilePath;
-            else if (userData.GameType == GameType.TUG)
-                pathName = Config.CSVUserDataTUGFilePath;
-            else if (userData.GameType == GameType.CarePitLog)
-                pathName = Config.CSVUserDataCarePitLogFilePath;
+            string pathName = GetFileNameByGameType(userData.GameType);
 
             if (!File.Exists(pathName))
             {
@@ -297,6 +337,12 @@ namespace ReportPrint.Model
             return true;
         }
 
+        /// <summary>
+        /// Modify user game score to value.
+        /// </summary>
+        /// <param name="userData">User data item</param>
+        /// <param name="value">Modified value</param>
+        /// <returns>true if succeed, false when fails</returns>
         public static bool ModifyUserData(IUserData userData, float value)
         {
             if (userData.GameType == GameType.All_ashiage_left ||
@@ -311,6 +357,12 @@ namespace ReportPrint.Model
             return false;
         }
 
+        /// <summary>
+        /// Modify user game score to value in All.csv.
+        /// </summary>
+        /// <param name="userData">User data item</param>
+        /// <param name="value">Modified value</param>
+        /// <returns>true if succeed, false when fails</returns>
         static bool ModifyUserDataFromAllCSV(IUserData userData, float value)
         {
             string pathName = Config.CSVUserDataAllFilePath;
@@ -339,6 +391,12 @@ namespace ReportPrint.Model
             return true;
         }
 
+        /// <summary>
+        /// Modify user game score to value in CarePitLog2020.txt.
+        /// </summary>
+        /// <param name="userData">User data item</param>
+        /// <param name="value">Modified value</param>
+        /// <returns>true if succeed, false when fails</returns>
         static bool ModifyUserDataFromLogCSV(IUserData userData, float value)
         {
             string pathName = Config.CSVUserDataCarePitLogFilePath;
@@ -367,6 +425,12 @@ namespace ReportPrint.Model
             return true;
         }
 
+        /// <summary>
+        /// Modify user game score to value in TUG.csv.
+        /// </summary>
+        /// <param name="userData">User data item</param>
+        /// <param name="value">Modified value</param>
+        /// <returns>true if succeed, false when fails</returns>
         static bool ModifyUserDataFromTUGCSV(IUserData userData, float value)
         {
             string pathName = Config.CSVUserDataTUGFilePath;
@@ -391,6 +455,10 @@ namespace ReportPrint.Model
             return true;
         }
 
+        /// <summary>
+        /// Make "Timed up & go" skelton file when it does not exist.
+        /// </summary>
+        /// <returns>true if succeed, false when fails</returns>
         static bool MakeTUGSkelton()
         {
             if (!Directory.Exists(Config.CSVUserDataTUGDirectoryPath))
@@ -403,7 +471,14 @@ namespace ReportPrint.Model
             return true;
         }
 
-        internal static bool SaveTUGData(int UserID, DateTime MeasureTime, float GameScore)
+        /// <summary>
+        /// Append TUG data to TUG.csv.
+        /// </summary>
+        /// <param name="UserID">User ID</param>
+        /// <param name="MeasureTime">Measure Time</param>
+        /// <param name="GameScore">Game Score</param>
+        /// <returns></returns>
+        internal static bool AppendTUGData(int UserID, DateTime MeasureTime, float GameScore)
         {
             string pathName = Config.CSVUserDataTUGFilePath;
 
@@ -423,6 +498,11 @@ namespace ReportPrint.Model
             return true;
         }
 
+        /// <summary>
+        /// Convert string to DateTime.
+        /// </summary>
+        /// <param name="MeasureDateTime"></param>
+        /// <returns></returns>
         static DateTime? ParseDate(string MeasureDateTime)
         {
             string[] formats = {
@@ -442,6 +522,11 @@ namespace ReportPrint.Model
             return null;
         }
 
+        /// <summary>
+        /// Convert Game Score in string to float.
+        /// </summary>
+        /// <param name="GameScore"></param>
+        /// <returns></returns>
         static float? ParseScore(string GameScore)
         {
             if (!float.TryParse(GameScore, out float score))

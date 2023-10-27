@@ -6,9 +6,16 @@ using System.Windows.Forms;
 
 namespace ReportPrint.OwnControls
 {
+    /// <summary>
+    /// Class <c>UserDataListView</c> models User Data Listview Control.
+    /// ListView control uses VirtualList mode.
+    /// </summary>
     public partial class UserDataListView : ListView
     {
         private IEnumerable<Model.IUserData> userDatas = null;
+        /// <summary>
+        /// List Of User data
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal IEnumerable<Model.IUserData> UserDatas
         {
@@ -31,6 +38,9 @@ namespace ReportPrint.OwnControls
             }
         }
 
+        /// <summary>
+        /// Selected User Data in ListView
+        /// </summary>
         internal Model.IUserData SelectedUserData
         {
             get
@@ -132,7 +142,7 @@ namespace ReportPrint.OwnControls
             ListViewItem item = new ListViewItem(userData.MeasureTime.ToString("yyyy-M-d"));
 
             item.SubItems.Add(userData.GameTitle);
-            item.SubItems.Add(userData.GaneScore.ToString("#,#.0#"));
+            item.SubItems.Add(userData.GameScore.ToString("#,#.0#"));
             item.Tag = userData;
 
             return item;
