@@ -70,9 +70,9 @@ namespace ReportPrint.OwnControls
 
             this.FullRowSelect = true;
 
-            this.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-                new System.Windows.Forms.ColumnHeader() { Text = "ID", Width = 70 },
-                new System.Windows.Forms.ColumnHeader() { Text = "名前", Width = 179 }
+            this.Columns.AddRange(new ColumnHeader[] {
+                new ColumnHeader() { Text = "ID", Width = 70 },
+                new ColumnHeader() { Text = "名前", Width = 179 }
             });
 
             this.RetrieveVirtualItem += new RetrieveVirtualItemEventHandler(OnRetrieveVirtualItem);

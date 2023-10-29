@@ -21,21 +21,21 @@ namespace ReportPrint.Report
         //initialize value in config value stored in registry.
         void InitData()
         {
-            numericUpDown1.Value = (decimal)Config.ashiag_y_min;
-            numericUpDown2.Value = (decimal)Config.ashiag_y_max;
-            numericUpDown3.Value = (decimal)Config.ashiag_y_intv;
+            numericUpDown1.Value = (decimal)Config.Axis_ashiag_y_min;
+            numericUpDown2.Value = (decimal)Config.Axis_ashiag_y_max;
+            numericUpDown3.Value = (decimal)Config.Axis_ashiag_y_intv;
 
-            numericUpDown6.Value = (decimal)Config.ssfive_y_min;
-            numericUpDown5.Value = (decimal)Config.ssfive_y_max;
-            numericUpDown4.Value = (decimal)Config.ssfive_y_intv;
+            numericUpDown6.Value = (decimal)Config.Axis_ssfive_y_min;
+            numericUpDown5.Value = (decimal)Config.Axis_ssfive_y_max;
+            numericUpDown4.Value = (decimal)Config.Axis_ssfive_y_intv;
 
-            numericUpDown9.Value = (decimal)Config.tug_y_min;
-            numericUpDown8.Value = (decimal)Config.tug_y_max;
-            numericUpDown7.Value = (decimal)Config.tug_y_intv;
+            numericUpDown9.Value = (decimal)Config.Axis_tug_y_min;
+            numericUpDown8.Value = (decimal)Config.Axis_tug_y_max;
+            numericUpDown7.Value = (decimal)Config.Axis_tug_y_intv;
 
-            numericUpDown12.Value = (decimal)Config.log_y_min;
-            numericUpDown11.Value = (decimal)Config.log_y_max;
-            numericUpDown10.Value = (decimal)Config.log_y_intv;
+            numericUpDown12.Value = (decimal)Config.Axis_log_y_min;
+            numericUpDown11.Value = (decimal)Config.Axis_log_y_max;
+            numericUpDown10.Value = (decimal)Config.Axis_log_y_intv;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -92,21 +92,21 @@ namespace ReportPrint.Report
                 numericUpDown10.Focus();
             }
 
-            Config.ashiag_y_min = (float)numericUpDown1.Value;
-            Config.ashiag_y_max = (float)numericUpDown2.Value;
-            Config.ashiag_y_intv = (float)numericUpDown3.Value;
+            Config.Axis_ashiag_y_min = (float)numericUpDown1.Value;
+            Config.Axis_ashiag_y_max = (float)numericUpDown2.Value;
+            Config.Axis_ashiag_y_intv = (float)numericUpDown3.Value;
 
-            Config.ssfive_y_min = (float)numericUpDown6.Value;
-            Config.ssfive_y_max = (float)numericUpDown5.Value;
-            Config.ssfive_y_intv = (float)numericUpDown4.Value;
+            Config.Axis_ssfive_y_min = (float)numericUpDown6.Value;
+            Config.Axis_ssfive_y_max = (float)numericUpDown5.Value;
+            Config.Axis_ssfive_y_intv = (float)numericUpDown4.Value;
 
-            Config.tug_y_min = (float)numericUpDown9.Value;
-            Config.tug_y_max = (float)numericUpDown8.Value;
-            Config.tug_y_intv = (float)numericUpDown7.Value;
+            Config.Axis_tug_y_min = (float)numericUpDown9.Value;
+            Config.Axis_tug_y_max = (float)numericUpDown8.Value;
+            Config.Axis_tug_y_intv = (float)numericUpDown7.Value;
 
-            Config.log_y_min = (float)numericUpDown12.Value;
-            Config.log_y_max = (float)numericUpDown11.Value;
-            Config.log_y_intv = (float)numericUpDown10.Value;
+            Config.Axis_log_y_min = (float)numericUpDown12.Value;
+            Config.Axis_log_y_max = (float)numericUpDown11.Value;
+            Config.Axis_log_y_intv = (float)numericUpDown10.Value;
 
             this.DialogResult = DialogResult.OK;
         }

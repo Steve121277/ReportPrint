@@ -71,10 +71,10 @@ namespace ReportPrint.OwnControls
 
             this.FullRowSelect = true;
 
-            this.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-                new System.Windows.Forms.ColumnHeader() { Text = "日付", Width = 90, TextAlign = HorizontalAlignment.Center },
-                new System.Windows.Forms.ColumnHeader() { Text = "測定", Width = 80, TextAlign = HorizontalAlignment.Center },
-                new System.Windows.Forms.ColumnHeader() { Text = "結果", Width = 70, TextAlign = HorizontalAlignment.Right }
+            this.Columns.AddRange(new ColumnHeader[] {
+                new ColumnHeader() { Text = "日付", Width = 90, TextAlign = HorizontalAlignment.Center },
+                new ColumnHeader() { Text = "測定", Width = 80, TextAlign = HorizontalAlignment.Center },
+                new ColumnHeader() { Text = "結果", Width = 70, TextAlign = HorizontalAlignment.Right }
             });
 
             this.RetrieveVirtualItem += new RetrieveVirtualItemEventHandler(OnRetrieveVirtualItem);

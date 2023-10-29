@@ -23,7 +23,7 @@ namespace ReportPrint.Model
         {
             List<IUserData> userDatas = new List<IUserData>();
             int csvLineNo = 0; //Line no in CSV
-            DateTime? measureTime = null;
+            DateTime? measureTime;
             float? score;
 
             if (!File.Exists(Config.CSVUserDataAllFilePath))
@@ -124,7 +124,7 @@ namespace ReportPrint.Model
         {
             List<IUserData> userDatas = new List<IUserData>();
             int csvLineNo = 0; //Line no in CSV
-            DateTime? measureTime = null;
+            DateTime? measureTime;
             float? score;
 
             if (!File.Exists(Config.CSVUserDataCarePitLogFilePath))
@@ -208,7 +208,7 @@ namespace ReportPrint.Model
         {
             List<IUserData> userDatas = new List<IUserData>();
             int csvLineNo = 0; //Line no in CSV
-            DateTime? measureTime = null;
+            DateTime? measureTime;
             float? score;
 
             if (!File.Exists(Config.CSVUserDataTUGFilePath))
@@ -508,7 +508,7 @@ namespace ReportPrint.Model
 
             using (StreamWriter writer = new StreamWriter(pathName, true))
             {
-                writer.WriteLine($"{UserID},{MeasureTime.ToString("yyyy/M/d")},{GameScore}");
+                writer.WriteLine($"{UserID},{MeasureTime:yyyy/M/d},{GameScore}");
             }
 
             return true;

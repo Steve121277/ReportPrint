@@ -49,9 +49,9 @@ namespace ReportPrint.Report
             chart_ashiage.ChartArea = new Rectangle(0, 0, 1120, 560);
             chart_ashiage.FirstMonth = s_item.CalcMonth;
             legend_ashiage.IsLegendVisible = true;
-            chart_ashiage.YLimitMin = Config.ashiag_y_min;
-            chart_ashiage.YLimitMax = Config.ashiag_y_max;
-            chart_ashiage.YTick = Config.ashiag_y_intv;
+            chart_ashiage.YLimitMin = Config.Axis_ashiag_y_min;
+            chart_ashiage.YLimitMax = Config.Axis_ashiag_y_max;
+            chart_ashiage.YTick = Config.Axis_ashiag_y_intv;
             dc_ashiage.Add(
                 new DataSeries()
                 {
@@ -70,9 +70,9 @@ namespace ReportPrint.Report
 
             chart_ssfive.ChartArea = new Rectangle(xWidth - 1120, 0, 1120, 560);
             chart_ssfive.FirstMonth = s_item.CalcMonth;
-            chart_ssfive.YLimitMin = Config.ssfive_y_min;
-            chart_ssfive.YLimitMax = Config.ssfive_y_max;
-            chart_ssfive.YTick = Config.ssfive_y_intv;
+            chart_ssfive.YLimitMin = Config.Axis_ssfive_y_min;
+            chart_ssfive.YLimitMax = Config.Axis_ssfive_y_max;
+            chart_ssfive.YTick = Config.Axis_ssfive_y_intv;
             dc_ssfive.Add(
                 new DataSeries()
                 {
@@ -81,9 +81,9 @@ namespace ReportPrint.Report
 
             chart_tug.ChartArea = new Rectangle(0, 608, 1120, 560);
             chart_tug.FirstMonth = s_item.CalcMonth;
-            chart_tug.YLimitMin = Config.tug_y_min;
-            chart_tug.YLimitMax = Config.tug_y_max;
-            chart_tug.YTick = Config.tug_y_intv;
+            chart_tug.YLimitMin = Config.Axis_tug_y_min;
+            chart_tug.YLimitMax = Config.Axis_tug_y_max;
+            chart_tug.YTick = Config.Axis_tug_y_intv;
             dc_tug.Add(
                 new DataSeries()
                 {
@@ -92,9 +92,9 @@ namespace ReportPrint.Report
 
             chart_log.ChartArea = new Rectangle(xWidth - 1120, 608, 1120, 560);
             chart_log.FirstMonth = s_item.CalcMonth;
-            chart_log.YLimitMin = Config.log_y_min;
-            chart_log.YLimitMax = Config.log_y_max;
-            chart_log.YTick = Config.log_y_intv;
+            chart_log.YLimitMin = Config.Axis_log_y_min;
+            chart_log.YLimitMax = Config.Axis_log_y_max;
+            chart_log.YTick = Config.Axis_log_y_intv;
             dc_log.Add(
                 new DataSeries()
                 {

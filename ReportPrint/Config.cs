@@ -167,63 +167,63 @@ namespace ReportPrint
             }
         }
 
-        internal static float ashiag_y_min
+        internal static float Axis_ashiag_y_min
         {
             get { return GetAxisReg(Config.Reg_ashiag_min, 0); }
             set { SetConfigValue(Config.Reg_ashiag_min, value); }
         }
-        internal static float ashiag_y_max
+        internal static float Axis_ashiag_y_max
         {
             get { return GetAxisReg(Config.Reg_ashiag_max, 80); }
             set { SetConfigValue(Config.Reg_ashiag_max, value); }
         }
-        internal static float ashiag_y_intv
+        internal static float Axis_ashiag_y_intv
         {
             get { return GetAxisReg(Config.Reg_ashiag_intv, 20); }
             set { SetConfigValue(Config.Reg_ashiag_intv, value); }
         }
 
-        internal static float ssfive_y_min
+        internal static float Axis_ssfive_y_min
         {
             get { return GetAxisReg(Config.Reg_ssfive_min, 0); }
             set { SetConfigValue(Config.Reg_ssfive_min, value); }
         }
-        internal static float ssfive_y_max
+        internal static float Axis_ssfive_y_max
         {
             get { return GetAxisReg(Config.Reg_ssfive_max, 25); }
             set { SetConfigValue(Config.Reg_ssfive_max, value); }
         }
-        internal static float ssfive_y_intv
+        internal static float Axis_ssfive_y_intv
         {
             get { return GetAxisReg(Config.Reg_ssfive_intv, 5); }
             set { SetConfigValue(Config.Reg_ssfive_intv, value); }
         }
-        internal static float tug_y_min
+        internal static float Axis_tug_y_min
         {
             get { return GetAxisReg(Config.Reg_tug_min, 0); }
             set { SetConfigValue(Config.Reg_tug_min, value); }
         }
-        internal static float tug_y_max
+        internal static float Axis_tug_y_max
         {
             get { return GetAxisReg(Config.Reg_tug_max, 30); }
             set { SetConfigValue(Config.Reg_tug_max, value); }
         }
-        internal static float tug_y_intv
+        internal static float Axis_tug_y_intv
         {
             get { return GetAxisReg(Config.Reg_tug_intv, 5); }
             set { SetConfigValue(Config.Reg_tug_intv, value); }
         }
-        internal static float log_y_min
+        internal static float Axis_log_y_min
         {
             get { return GetAxisReg(Config.Reg_log_min, 0); }
             set { SetConfigValue(Config.Reg_log_min, value); }
         }
-        internal static float log_y_max
+        internal static float Axis_log_y_max
         {
             get { return GetAxisReg(Config.Reg_log_max, 100); }
             set { SetConfigValue(Config.Reg_log_max, value); }
         }
-        internal static float log_y_intv
+        internal static float Axis_log_y_intv
         {
             get { return GetAxisReg(Config.Reg_log_intv, 20); }
             set { SetConfigValue(Config.Reg_log_intv, value); }

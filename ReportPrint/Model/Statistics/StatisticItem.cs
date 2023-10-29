@@ -68,12 +68,10 @@ namespace ReportPrint.Model.Statistics
                         case GameType.TUG:
                             index = (int)GameType.TUG;
                             break;
+                        default: continue;
                     }
 
-                    if (index >= 0)
-                    {
-                        sitem.Values[index, cnt] = userData.GameScore;
-                    }
+                    sitem.Values[index, cnt] = userData.GameScore;
                 }
 
                 cnt++;

@@ -40,7 +40,6 @@ namespace ReportPrint.Report.Charts
             float y = pt.Y;
             float size = SymbolSize;
             float halfSize = size / 2.0f;
-            RectangleF aRectangle = new RectangleF(x - halfSize, y - halfSize, size, size);
 
             switch (SymbolType)
             {
@@ -64,6 +63,7 @@ namespace ReportPrint.Report.Charts
                     g.FillPolygon(aBrush, ptc);
                     g.DrawPolygon(aPen, ptc);
                     break;
+                default: return;
             }
 
             g.FillEllipse(circleBrush, x - SymbolInnerCircleRudias, y - SymbolInnerCircleRudias, SymbolInnerCircleRudias * 2, SymbolInnerCircleRudias * 2);

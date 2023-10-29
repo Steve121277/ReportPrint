@@ -10,17 +10,17 @@ namespace ReportPrint.Report
     /// </summary>
     internal class StaticsTable
     {
-        int CellWidth = 118;
-        int CellHheight = 80;
-        int OuterThickness = 9;
-        int InnerThickness = 6;
+        readonly int CellWidth = 118;
+        readonly int CellHheight = 80;
+        readonly int OuterThickness = 9;
+        readonly int InnerThickness = 6;
 
-        int Rows = 6;
-        int Cols = 16;
+        readonly int Rows = 6;
+        readonly int Cols = 16;
 
-        Font fontCell = new Font(Config.PrintFontName, 11, FontStyle.Regular);
-        Brush BrushInner = Brushes.DarkGray;
-        Brush brushOdd = new SolidBrush(Color.LightGray);
+        readonly Font fontCell = new Font(Config.PrintFontName, 11, FontStyle.Regular);
+        readonly Brush BrushInner = Brushes.DarkGray;
+        readonly Brush brushOdd = new SolidBrush(Color.LightGray);
 
         int TotalWidth => CellWidth * Cols + InnerThickness * (Cols - 1);
         int TotalHeight => CellHheight * Rows + InnerThickness * (Rows - 1);
@@ -30,7 +30,7 @@ namespace ReportPrint.Report
         int ColWidth(int Cols = 1) => CellWidth * Cols + InnerThickness * (Cols - 1);
         int RowHeight(int Rows = 1) => CellHheight * Rows + InnerThickness * (Rows - 1);
 
-        StatisticItem s_item;
+        readonly StatisticItem s_item;
 
         internal StaticsTable(StatisticItem s_item)
         {
