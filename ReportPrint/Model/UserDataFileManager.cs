@@ -27,7 +27,9 @@ namespace ReportPrint.Model
             float? score;
 
             if (!File.Exists(Config.CSVUserDataAllFilePath))
+            {
                 return userDatas;
+            }
 
             var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
             {
@@ -70,7 +72,9 @@ namespace ReportPrint.Model
                     {
                         if (GameName != "ssfive" &&
                             GameName != "ashiage")
+                        {
                             continue;
+                        }
                     }
 
                     if (!csvReader.TryGetField<string>(5, out string GameOption))
@@ -124,7 +128,9 @@ namespace ReportPrint.Model
             float? score;
 
             if (!File.Exists(Config.CSVUserDataCarePitLogFilePath))
+            {
                 return userDatas;
+            }
 
             var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
             {
@@ -206,7 +212,9 @@ namespace ReportPrint.Model
             float? score;
 
             if (!File.Exists(Config.CSVUserDataTUGFilePath))
+            {
                 return userDatas;
+            }
 
             var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
             {
@@ -331,7 +339,9 @@ namespace ReportPrint.Model
             using (StreamWriter writer = new StreamWriter(pathName, true))
             {
                 foreach (String line in lines)
+                {
                     writer.WriteLine(line);
+                }
             }
 
             return true;
@@ -345,16 +355,18 @@ namespace ReportPrint.Model
         /// <returns>true if succeed, false when fails</returns>
         public static bool ModifyUserData(IUserData userData, float value)
         {
-            if (userData.GameType == GameType.All_ashiage_left ||
-                userData.GameType == GameType.All_ashiage_right ||
-                userData.GameType == GameType.All_ssfive)
-                return ModifyUserDataFromAllCSV(userData, value);
-            else if (userData.GameType == GameType.TUG)
-                return ModifyUserDataFromTUGCSV(userData, value);
-            else if (userData.GameType == GameType.CarePitLog)
-                return ModifyUserDataFromLogCSV(userData, value);
-
-            return false;
+            switch (userData.GameType)
+            {
+                case GameType.All_ashiage_left:
+                case GameType.All_ashiage_right:
+                case GameType.All_ssfive:
+                    return ModifyUserDataFromAllCSV(userData, value);
+                case GameType.TUG:
+                    return ModifyUserDataFromTUGCSV(userData, value);
+                case GameType.CarePitLog:
+                    return ModifyUserDataFromLogCSV(userData, value);
+                default: return false;
+            }
         }
 
         /// <summary>
@@ -436,7 +448,9 @@ namespace ReportPrint.Model
             string pathName = Config.CSVUserDataTUGFilePath;
 
             if (!File.Exists(pathName))
+            {
                 return false;
+            }
 
             string[] lines = File.ReadAllLines(pathName);
 
@@ -445,7 +459,9 @@ namespace ReportPrint.Model
             var split = line.Split(',');
 
             if (split.Length < 3)
+            {
                 return false;
+            }
 
             split[2] = value.ToString();
             lines[userData.LineNo] = string.Join(",", split);

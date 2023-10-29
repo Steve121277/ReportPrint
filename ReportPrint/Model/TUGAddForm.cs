@@ -10,7 +10,7 @@ namespace ReportPrint.Model
     /// </summary>
     internal partial class TUGAddForm : Form
     {
-        private Model.User user;
+        private readonly Model.User user;
 
         /// <summary>
         /// Measured Game Score

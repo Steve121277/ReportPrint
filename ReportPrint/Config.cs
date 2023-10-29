@@ -11,7 +11,7 @@ namespace ReportPrint
     /// <summary>
     /// Class <c>Config</c> models the configuration.
     /// </summary>
-    internal class Config
+    internal static class Config
     {
         const string ApplicationRegPath = "Software\\ReportApp";
         

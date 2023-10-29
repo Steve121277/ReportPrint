@@ -100,7 +100,9 @@ namespace ReportPrint.Report.Charts
                 g.FillRectangle(Brushes.Black, new RectangleF(xAxisPoint.X - 3f, xAxisPoint.Y - 3f, 6f, 6f));
 
                 if (month == 0)
+                {
                     month = 12;
+                }
 
                 SizeF sizeXTick = g.MeasureString(fX.ToString(), XTickFont);
                 g.DrawString(

@@ -111,7 +111,9 @@ namespace ReportPrint
         private void btnDeleteUserData_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("ユーザーデータを削除しますか？", "警告", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            {
                 return;
+            }
 
             if (UserDataFileManager.DeleteUserData(listViewUserDatas.SelectedUserData))
             {
@@ -132,7 +134,9 @@ namespace ReportPrint
             TUGAddForm formAdd = new TUGAddForm(listViewUsers.SelectedUser);
 
             if (formAdd.ShowDialog() != DialogResult.OK)
+            {
                 return;
+            }
 
             if (UserDataFileManager.AppendTUGData(listViewUsers.SelectedUser.ID, formAdd.MeasureTime, formAdd.GameScore))
             {
@@ -205,7 +209,9 @@ namespace ReportPrint
             };
 
             if (saveFileDialogPDF.ShowDialog() != DialogResult.OK)
+            {
                 return;
+            }
 
             UseWaitCursor = true;
 

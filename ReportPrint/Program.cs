@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace ReportPrint
 {
-/// <summary>
-/// This is the main entry point for the application.
-/// </summary>
+    /// <summary>
+    /// This is the main entry point for the application.
+    /// </summary>
     internal static class Program
     {
         /// <summary>

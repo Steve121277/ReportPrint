@@ -44,7 +44,9 @@ namespace ReportPrint.Report.Charts
             foreach (DataSeries ds in dc.DataSeriesList)
             {
                 if (totalWidth > 0)
+                {
                     totalWidth += GapBetweenItems;
+                }
 
                 totalWidth += LegendMarkWidth;
 

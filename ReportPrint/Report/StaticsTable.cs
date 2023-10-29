@@ -202,7 +202,10 @@ namespace ReportPrint.Report
 
                 // It fits, back out
                 if (size.Height <= proposedSize.Height &&
-                     size.Width <= proposedSize.Width) { return fitFont; }
+                     size.Width <= proposedSize.Width) 
+                { 
+                    return fitFont; 
+                }
 
                 // Try a smaller font (90% of old size)
                 Font oldFont = fitFont;
@@ -234,7 +237,9 @@ namespace ReportPrint.Report
                 for (int month = 0; month < 12; month++)
                 {
                     if (Single.IsNaN(this.s_item.Values[kind, month]))
+                    {
                         continue;
+                    }
 
                     DrawText(graphics, this.s_item.Values[kind, month].ToString(), 1 + kind, 4 + month, stringFormatCell);
                 }
